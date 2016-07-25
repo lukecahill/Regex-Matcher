@@ -15,6 +15,10 @@ namespace regex {
 		}
 
 		private void runButton_Click(object sender, EventArgs e) {
+			textArea.SelectAll();
+			textArea.SelectionColor = Color.Black;
+			total = 0;
+
 			if (!validateTextFields()) return;
 
 			var regex = new Regex(regexArea.Text);
@@ -22,6 +26,8 @@ namespace regex {
 
 			if(results.Count > 0) {
 				isResults(results);
+			} else {
+				MessageBox.Show("Could not find any results for that search");
 			}
 		}
 
@@ -49,10 +55,6 @@ namespace regex {
 			}
 
 			matchesLabel.Text = $"Matches found: {total}";
-		}
-
-		private void textArea_TextChanged(object sender, EventArgs e) {
-			textArea.ForeColor = Color.Black;
 		}
 	}
 }
