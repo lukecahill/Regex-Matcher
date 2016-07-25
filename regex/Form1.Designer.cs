@@ -28,10 +28,12 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.runButton = new System.Windows.Forms.Button();
+			this.matchesLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// textArea
 			// 
+			this.textArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textArea.Location = new System.Drawing.Point(12, 44);
 			this.textArea.Name = "textArea";
 			this.textArea.Size = new System.Drawing.Size(791, 211);
@@ -41,6 +43,7 @@
 			// 
 			// regexArea
 			// 
+			this.regexArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.regexArea.Location = new System.Drawing.Point(12, 293);
 			this.regexArea.Name = "regexArea";
 			this.regexArea.Size = new System.Drawing.Size(791, 147);
@@ -75,11 +78,21 @@
 			this.runButton.UseVisualStyleBackColor = true;
 			this.runButton.Click += new System.EventHandler(this.runButton_Click);
 			// 
+			// matchesLabel
+			// 
+			this.matchesLabel.AutoSize = true;
+			this.matchesLabel.Location = new System.Drawing.Point(665, 277);
+			this.matchesLabel.Name = "matchesLabel";
+			this.matchesLabel.Size = new System.Drawing.Size(81, 13);
+			this.matchesLabel.TabIndex = 5;
+			this.matchesLabel.Text = "Matches found:";
+			// 
 			// mainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(815, 508);
+			this.Controls.Add(this.matchesLabel);
 			this.Controls.Add(this.runButton);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -102,6 +115,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button runButton;
+		private System.Windows.Forms.Label matchesLabel;
 	}
 }
 

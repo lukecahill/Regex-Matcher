@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -7,8 +8,10 @@ namespace regex {
 	public partial class mainForm : Form {
 
 		List<SearchResult> found = new List<SearchResult>();
+		int total = 0;
 		public mainForm() {
 			InitializeComponent();
+			matchesLabel.Text = $"Matches found: {total}";
 		}
 
 		private void runButton_Click(object sender, EventArgs e) {
@@ -39,22 +42,17 @@ namespace regex {
 		public void isResults(MatchCollection match) {
 
 			foreach(Match item in match) {
-				var result = CreateResult(item.Index, item.Value.Length);
 				textArea.SelectionStart = item.Index;
 				textArea.SelectionLength = item.Value.Length;
-				textArea.SelectionColor = System.Drawing.Color.Red;
+				textArea.SelectionColor = Color.Red;
+				total++;
 			}
-		}
 
-		private SearchResult CreateResult(int position, int length) {
-			return new SearchResult {
-				Postition = position,
-				Length = length
-			};
+			matchesLabel.Text = $"Matches found: {total}";
 		}
 
 		private void textArea_TextChanged(object sender, EventArgs e) {
-			textArea.ForeColor = System.Drawing.Color.Black;
+			textArea.ForeColor = Color.Black;
 		}
 	}
 }
