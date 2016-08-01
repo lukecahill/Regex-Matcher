@@ -25,7 +25,7 @@ namespace regex {
 			var results = regex.Matches(textArea.Text);
 
 			if(results.Count > 0) {
-				isResults(results);
+				showResults(results);
 			} else {
 				MessageBox.Show("Could not find any results for that search");
 			}
@@ -45,7 +45,7 @@ namespace regex {
 			return true;
 		}
 
-		public void isResults(MatchCollection match) {
+		public void showResults(MatchCollection match) {
 
 			foreach(Match item in match) {
 				textArea.SelectionStart = item.Index;
