@@ -56,5 +56,20 @@ namespace regex {
 
 			matchesLabel.Text = $"Matches found: {total}";
 		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			if (comboBox1.SelectedIndex == 0) {
+				regexArea.Text = "\\d";
+			} else if(comboBox1.SelectedIndex == 1) {
+				regexArea.Text = "\\w{4}";
+			} else if (comboBox1.SelectedIndex == 2) {
+				regexArea.Text = "[A-Z]";
+			} else if (comboBox1.SelectedIndex == 3) {
+				// below regex from http://stackoverflow.com/a/5717338.
+				regexArea.Text = @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$";
+			} else if(comboBox1.SelectedIndex == 4) {
+				regexArea.Text = @"(?:[0-9]{1,3}\.){3}[0-9]{1,3}";
+			}
+		}
 	}
 }
