@@ -109,7 +109,8 @@
             "All 4 letter words",
             "All words in capitals",
             "Website URL",
-            "IP Address"});
+            "IP Address",
+            "Email Address"});
 			this.comboBox1.Location = new System.Drawing.Point(16, 393);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(235, 21);
