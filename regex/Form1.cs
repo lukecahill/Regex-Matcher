@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace regex {
@@ -19,19 +20,23 @@ namespace regex {
 			textArea.SelectionColor = Color.Black;
 			total = 0;
 
-			if (!validateTextFields()) return;
+			if (!ValidateTextFields()) return;
 
 			var regex = new Regex(regexArea.Text);
 			var results = regex.Matches(textArea.Text);
 
-			if(results.Count > 0) {
-				showResults(results);
+			matchesLabel.Text = $"Matches found: {results.Count}";
+
+			if (results.Count > 0) {
+				Task.Factory.StartNew(() =>
+					ShowResults(results)
+				);
 			} else {
 				MessageBox.Show("Could not find any results for that search");
 			}
 		}
 
-		public bool validateTextFields() {
+		public bool ValidateTextFields() {
 			if (textArea.Equals("") || String.IsNullOrWhiteSpace(textArea.Text)) {
 				MessageBox.Show("Enter some text to search.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return false;
@@ -45,23 +50,21 @@ namespace regex {
 			return true;
 		}
 
-		public void showResults(MatchCollection match) {
+		public void ShowResults(MatchCollection match) {
 
 			foreach(Match item in match) {
-				textArea.SelectionStart = item.Index;
-				textArea.SelectionLength = item.Value.Length;
-				textArea.SelectionColor = Color.Red;
+				Invoke(new Action(() => textArea.SelectionStart = item.Index));
+				Invoke(new Action(() => textArea.SelectionLength = item.Value.Length));
+				Invoke(new Action(() => textArea.SelectionColor = Color.Red));
 				total++;
-			}
-
-			matchesLabel.Text = $"Matches found: {total}";
+			}			
 		}
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			if (comboBox1.SelectedIndex == 0) {
 				regexArea.Text = "\\d";
 			} else if (comboBox1.SelectedIndex == 1) {
-				regexArea.Text = "\\w{4}";
+				regexArea.Text = "[a-zA-Z]{4}";
 			} else if (comboBox1.SelectedIndex == 2) {
 				regexArea.Text = "[A-Z]";
 			} else if (comboBox1.SelectedIndex == 3) {
